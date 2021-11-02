@@ -1,9 +1,22 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Logs
+logs
+*.log
+npm-debug.log*
 
-# dependencies
+# Dependency directory
 node_modules
 /.pnp
 .pnp.js
+.idea/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.DS_Store
+.idea
+.env
+*.log
 
 # testing
 /coverage
@@ -21,22 +34,3 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Logs
-logs
-*.log
-npm-debug.log*
-
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-./frontend/build
-frontend/build
-
-
-
-/backend/.env
-.DS_Store
-.idea
-.vscode
