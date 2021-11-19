@@ -1,5 +1,5 @@
 import api from './api'
-export const BASE_URL = "http://api.pictures-host.nomoredomains.rocks";
+export const BASE_URL = "https://api.pictures-host.nomoredomains.rocks";
 
 const checkResponse = (res) => {
   if (!res.ok) {

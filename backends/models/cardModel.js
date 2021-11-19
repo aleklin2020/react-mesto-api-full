@@ -11,7 +11,11 @@ const cardSchema = new mongoose.Schema({
   link: {
     type: String, // имя — это строка
     required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
-
+    validate: {
+      validator: (v) => {
+        validator.isURL(v);
+      },
+    },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId, // имя — это строка
@@ -21,7 +25,6 @@ const cardSchema = new mongoose.Schema({
   },
   likes: {
     type: mongoose.Schema.Types.ObjectId,
-    type: Array,
     default: [],
   },
   createdAt: {

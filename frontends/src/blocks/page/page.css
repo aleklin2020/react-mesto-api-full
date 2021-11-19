@@ -3,5 +3,8 @@
 	margin: 0;
 	display: flex;
 	justify-content: center;
+}
+body {
 	height: 100vh;
+	background: #000;
 }

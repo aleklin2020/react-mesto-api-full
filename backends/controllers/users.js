@@ -27,9 +27,7 @@ module.exports.login = (req, res, next) => {
           const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
 
           res
-            .cookie(jwt, token.toString(), { maxAge: 3600000 * 24 * 7, httpOnly: true })
             .send({ token });
-
         })
         .catch(next);
     })
@@ -78,8 +76,9 @@ module.exports.postUsers = (req, res, next) => {
       }
       if (err.name === 'MongoServerError' && err.code === 11000) {
         next(new IncorrectEmail('Пользователь с таким e-mail уже существует'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 // Возврашение всех пользователей
@@ -96,13 +95,13 @@ module.exports.getUser = (reg, res, next) => {
 
 // получения информации о пользователе
 module.exports.getUserMe = (req, res, next) => {
-  const userIdMe  = req.user._id;
+  const userIdMe = req.user._id;
 
   User.findById(userIdMe)
     .then((user) => {
       if (user) {
         return res.send({
-         data: user
+          data: user
         });
       }
       throw new NotFoundError('Пользователь по указанному id не найден');
@@ -110,14 +109,15 @@ module.exports.getUserMe = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new IncorrectDataError('Передан некорректный id пользователя'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
 // Возврашение пользователя по id
 module.exports.getUsersId = (req, res, next) => {
-  const  userId  = req.params;
+  const userId = req.params;
 
   User.findById(userId)
     .then((user) => {
@@ -131,8 +131,9 @@ module.exports.getUsersId = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new IncorrectDataError('Передан некорректный id пользователя'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 // обновляет профиль
@@ -153,8 +154,9 @@ module.exports.patchUser = (req, res, next) => {
       }
       if (err.name === 'CastError') {
         next(new IncorrectDataError('Передан некорректный id пользователя'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 // обновляет аватар
@@ -175,7 +177,8 @@ module.exports.patchUserAvatar = (req, res, next) => {
       }
       if (err.name === 'CastError') {
         next(new IncorrectDataError('Передан некорректный id пользователя'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { celebrate, Joi } = require('celebrate');
-const { method } = require('../method/method');
+const { methodes } = require('../method/method');
 const {
   getUser,
   getUsersId,
@@ -35,7 +35,7 @@ router.patch('/users/me/avatar',
   celebrate({
   // валидируем body
     body: Joi.object().keys({
-      avatar: Joi.string().required().custom(method),
+      avatar: Joi.string().required().custom(methodes),
     }),
   }),
   patchUserAvatar); // обновление аватар

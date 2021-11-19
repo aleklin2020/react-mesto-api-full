@@ -111,7 +111,7 @@ class Api {
 
 }
 const api = new Api({
-  link: "http://api.pictures-host.nomoredomains.rocks",
+  link: "https://api.pictures-host.nomoredomains.rocks",
    headers: {
    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",

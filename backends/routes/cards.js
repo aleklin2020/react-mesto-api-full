@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const { celebrate, Joi } = require('celebrate');
-const NotFoundError = require('../erors/not-found-err');
-const { method } = require('../method/method');
+const { methodes } = require('../method/method');
 const {
   getCard,
   postCard,
@@ -10,23 +9,17 @@ const {
   dislikeCard,
 } = require("../controllers/cards");
 
-/* router.use((req, res, next) => {
-  next(new NotFoundError('Ошибка - некорректный запрос'));
-}); */
-
 router.get('/cards', getCard);// возврашает карточки
 
- router.post('/cards',
+router.post('/cards',
   celebrate({
   // валидируем body
     body: Joi.object().keys({
       name: Joi.string().required().min(2).max(30),
-      link: Joi.string().required().custom(method),
+      link: Joi.string().required().custom(methodes),
     }),
   }),
   postCard); // создает карточку
-
-
 
 router.delete('/cards/:cardId',
   celebrate({

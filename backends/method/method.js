@@ -1,6 +1,6 @@
 const validator = require('validator');
 
-module.exports.method = (value) => {
+module.exports.methodes = (value) => {
   const result = validator.isURL(value);
   if (result) {
     return value;
