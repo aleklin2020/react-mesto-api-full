@@ -1,0 +1,11 @@
+@import url(./__button/profile-informashion__button.css);
+.profile-informashion {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+@media (max-width: 560px) {
+.profile-informashion {
+	flex-direction: column;
+	}
+}	
