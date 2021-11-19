@@ -1,0 +1,12 @@
+@import url(./__form/start-screen__form.css);
+@import url(./__input/start-screen__input.css);
+@import url(./__submit/start-screen__submit.css);
+@import url(./__title/start-screen__title.css);
+@import url(./__login/start-screen__login.css);
+.start-screen {
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 55px;
+}
