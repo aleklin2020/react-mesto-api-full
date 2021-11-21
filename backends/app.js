@@ -10,6 +10,7 @@ const auth = require('./middlewares/auth');
 const centralizedErrors = require('./middlewares/centralizedErrors');
 const { methodes } = require('./method/method');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const NotFoundError = require("./erors/not-found-err")
 const {
   login,
   postUsers,
@@ -92,8 +93,8 @@ app.use(auth);
 app.use("/", routerUser);
 app.use("/", routerCard);
 
-app.use((req, res) => {
-  return res.status(404).send({ message: 'Страница не найдена' });
+app.use((req, res, next) => {
+  next(new NotFoundError('Страница не найдена'));
 });
 
 app.use(errorLogger);
