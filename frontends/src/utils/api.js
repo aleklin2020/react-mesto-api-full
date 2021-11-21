@@ -53,7 +53,7 @@ class Api {
   getIntialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
-     // credentials: 'include',
+    //  credentials: 'include',
        headers: this._headers,
     }).then((res) => {
       return this._checkResponse(res);
